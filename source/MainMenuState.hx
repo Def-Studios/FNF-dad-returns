@@ -2,6 +2,7 @@ package;
 
 import flixel.input.gamepad.FlxGamepad;
 import Controls.KeyboardScheme;
+import FxTools;
 import flixel.FlxG;
 import flixel.FlxObject;
 import flixel.FlxSprite;
@@ -98,18 +99,16 @@ class MainMenuState extends MusicBeatState
 			menuItem.animation.addByPrefix('selected', optionShit[i] + " white", 24);
 			menuItem.animation.play('idle');
 			menuItem.ID = i;
-			menuItem.screenCenter(X);
+			// menuItem.screenCenter(X); no im gonna do a funky position thingy
+			menuItem.x = FlxG.width / 1.5; // told u it was funky :wink:
 			menuItems.add(menuItem);
 			menuItem.scrollFactor.set();
 			menuItem.antialiasing = true;
-			if (firstStart)
 				FlxTween.tween(menuItem,{y: 60 + (i * 160)},1 + (i * 0.25) ,{ease: FlxEase.expoInOut, onComplete: function(flxTween:FlxTween) 
 					{ 
 						finishedFunnyMove = true; 
 						changeItem();
 					}});
-			else
-				menuItem.y = 60 + (i * 160);
 		}
 
 		firstStart = false;
